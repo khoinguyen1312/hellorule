@@ -16,7 +16,7 @@
 		<h:form id="form">
 			<gui:eventListeners rulesPackage="lr" dataModel="#{data.leaveRequest}" dialogData="#{data}" />
 			<p:panelGrid columns="2" cellpadding="10">
-				<p:outputLabel for="personalId" value="Id : "/>
+				<p:outputLabel for="personalId" value="Id"/>
 				<p:inputText id="personalId" value="#{data.leaveRequest.personalId}"/>
 				
 				<p:outputLabel for="name" value="Name"/>
@@ -24,6 +24,15 @@
 				
 				<p:outputLabel for="age" value="Age"/>
 				<p:inputNumber id="age" value="#{data.leaveRequest.age}"/>
+				
+				<p:outputLabel for="begin" value="Begin day"/>
+				<p:calendar id="begin" value="#{data.leaveRequest.beginDay}"/>
+				
+				<p:outputLabel for="end" value="End day"/>
+				<p:calendar id="end" value="#{data.leaveRequest.endDay}"/>
+				
+				<p:outputLabel />
+				<p:commandButton id="submit" value="Submit"/>
 			</p:panelGrid>
 		</h:form>
 	</h:body>

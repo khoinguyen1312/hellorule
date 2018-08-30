@@ -6,3 +6,7 @@ age Integer #field
 age PERSISTENT #fieldModifier
 personalId String #field
 personalId PERSISTENT #fieldModifier
+beginDay java.util.Date #field
+beginDay PERSISTENT #fieldModifier
+endDay java.util.Date #field
+endDay PERSISTENT #fieldModifier

@@ -1,4 +1,6 @@
-import ch.axonivy.fintech.standard.guiframework.BaseMetaDto
+import ch.axonivy.fintech.standard.guiframework.BaseMetaDto;
+import ch.ivyteam.ivy.environment.Ivy;
+import java.util.Date;
 
 rule "[hellorule:LeaveRequest] Personal ID is disable when age is less than 18"
 when
@@ -14,4 +16,76 @@ when
 	$personalId: BaseMetaDto(propertyName == "TypeBasedRules.LeaveRequest.personalId")
 then
 	$personalId.setReadonly(false);
+end	
+
+// Override data type
+rule "[hellorule:LeaveRequest] Begin day cannot later than Ending day"
+when
+	$beginDay: BaseMetaDto(propertyName == "TypeBasedRules.LeaveRequest.beginDay", viewValue != null && viewValue != "", $beginDayViewValue:viewValue#Date)
+	$endDay: BaseMetaDto(propertyName == "TypeBasedRules.LeaveRequest.endDay", viewValue != null && viewValue != "", $beginDayViewValue > viewValue#Date)
+then
+	$beginDay.setValid(false);
+	$beginDay.setMessage("This is wrong");
+	$endDay.setValid(false);
+	$endDay.setMessage("This is wrong");
+end	
+
+rule "[hellorule:LeaveRequest] Begin day is sooner Ending day"
+when
+	$beginDay: BaseMetaDto(propertyName == "TypeBasedRules.LeaveRequest.beginDay", viewValue != null && viewValue != "", $beginDayViewValue:viewValue#Date)
+	$endDay: BaseMetaDto(propertyName == "TypeBasedRules.LeaveRequest.endDay", viewValue != null && viewValue != "", $beginDayViewValue <= viewValue#Date)
+then
+	$beginDay.setValid(true);
+	$beginDay.setMessage("");
+	$endDay.setValid(true);
+	$endDay.setMessage("");
+end	
+
+// How to log
+rule "[hellorule:LeaveRequest] Logging"
+when
+	$age: BaseMetaDto(propertyName == "TypeBasedRules.LeaveRequest.age")
+	$personalId: BaseMetaDto(propertyName == "TypeBasedRules.LeaveRequest.personalId")
+	$name: BaseMetaDto(propertyName == "TypeBasedRules.LeaveRequest.name")
+	$beginDay: BaseMetaDto(propertyName == "TypeBasedRules.LeaveRequest.beginDay")
+	$endDay: BaseMetaDto(propertyName == "TypeBasedRules.LeaveRequest.endDay")
+	$submitButton: BaseMetaDto(propertyName == "TypeBasedRules.LeaveRequest.submit")
+then
+	Ivy.log().error("age: " + $age.getViewValue());
+	Ivy.log().error("personalId: " + $personalId.getViewValue());
+	Ivy.log().error("name: " + $name.getViewValue());
+	Ivy.log().error("beginDay: " + $beginDay.getViewValue());
+	Ivy.log().error("endDay: " + $endDay.getViewValue());
+end	
+
+// Write rule by id
+rule "[hellorule:LeaveRequest] Allow sumit when all info is filled and valid"
+when
+	$age: BaseMetaDto(propertyName == "TypeBasedRules.LeaveRequest.age", viewValue != null && viewValue != "", valid == true)
+	$personalId: BaseMetaDto(propertyName == "TypeBasedRules.LeaveRequest.personalId", viewValue != null && viewValue != "", valid == true)
+	$name: BaseMetaDto(propertyName == "TypeBasedRules.LeaveRequest.name", viewValue != null && viewValue != "", valid == true)
+	$beginDay: BaseMetaDto(propertyName == "TypeBasedRules.LeaveRequest.beginDay", viewValue != null && viewValue != "", valid == true)
+	$endDay: BaseMetaDto(propertyName == "TypeBasedRules.LeaveRequest.endDay", viewValue != null && viewValue != "", valid == true)
+	$submitButton: BaseMetaDto(propertyName == "TypeBasedRules.LeaveRequest.submit")
+then
+	Ivy.log().error("enable");
+	$submitButton.setRendered(true);
+end	
+
+rule "[hellorule:LeaveRequest] Do not Allow to sumit when all info is not filled or not valid"
+when
+	$age: BaseMetaDto(propertyName == "TypeBasedRules.LeaveRequest.age", $ageViewValue:viewValue)
+	$personalId: BaseMetaDto(propertyName == "TypeBasedRules.LeaveRequest.personalId", $personalIdViewValue:viewValue)
+	$name: BaseMetaDto(propertyName == "TypeBasedRules.LeaveRequest.name", $nameViewValue:viewValue)
+	$beginDay: BaseMetaDto(propertyName == "TypeBasedRules.LeaveRequest.beginDay", $beginDayViewValue:viewValue)
+	$endDay: BaseMetaDto(propertyName == "TypeBasedRules.LeaveRequest.endDay", $endDayViewValue:viewValue)
+	eval ( $ageViewValue == null || $ageViewValue == "" 
+			|| $personalIdViewValue == null || $personalIdViewValue == "" 
+			|| $nameViewValue == null || $nameViewValue == "" 
+			|| $beginDayViewValue == null || $beginDayViewValue == ""
+			|| $endDayViewValue == null || $endDayViewValue == "")
+	$submitButton: BaseMetaDto(propertyName == "TypeBasedRules.LeaveRequest.submit")
+then
+	Ivy.log().error("disable");
+	$submitButton.setRendered(false);
 end	
