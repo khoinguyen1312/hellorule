@@ -1,0 +1,8 @@
+LeaveRequest #class
+ch.axonivy.fintec.hellorule.datamodel #namespace
+name String #field
+name PERSISTENT #fieldModifier
+age Integer #field
+age PERSISTENT #fieldModifier
+personalId String #field
+personalId PERSISTENT #fieldModifier

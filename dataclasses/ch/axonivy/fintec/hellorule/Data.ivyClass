@@ -1,0 +1,4 @@
+Data #class
+ch.axonivy.fintec.hellorule #namespace
+leaveRequest ch.axonivy.fintec.hellorule.datamodel.LeaveRequest #field
+leaveRequest PERSISTENT #fieldModifier

@@ -1,0 +1,17 @@
+import ch.axonivy.fintech.standard.guiframework.BaseMetaDto
+
+rule "[hellorule:LeaveRequest] Personal ID is disable when age is less than 18"
+when
+	$age: BaseMetaDto(propertyName == "TypeBasedRules.LeaveRequest.age", viewValue < 18)
+	$personalId: BaseMetaDto(propertyName == "TypeBasedRules.LeaveRequest.personalId")
+then
+	$personalId.setReadonly(true);
+end	
+
+rule "[hellorule:LeaveRequest] Personal ID is enable when age is bigger than 18"
+when
+	$age: BaseMetaDto(propertyName == "TypeBasedRules.LeaveRequest.age", viewValue >= 18)
+	$personalId: BaseMetaDto(propertyName == "TypeBasedRules.LeaveRequest.personalId")
+then
+	$personalId.setReadonly(false);
+end	
