@@ -19,6 +19,11 @@ ss0 @PushWFArc f2 '' #zField
 ss0 @GridStep f5 '' #zField
 ss0 @PushWFArc f6 '' #zField
 ss0 @PushWFArc f4 '' #zField
+ss0 @StartRequest f7 '' #zField
+ss0 @EndTask f8 '' #zField
+ss0 @RichDialog f10 '' #zField
+ss0 @PushWFArc f11 '' #zField
+ss0 @PushWFArc f9 '' #zField
 >Proto ss0 ss0 startLinks #zField
 ss0 f0 outLink startLeaveRequest.ivp #txt
 ss0 f0 type ch.axonivy.fintec.hellorule.Data #txt
@@ -95,6 +100,58 @@ ss0 f6 expr out #txt
 ss0 f6 111 64 168 64 #arcP
 ss0 f4 expr out #txt
 ss0 f4 280 64 328 64 #arcP
+ss0 f7 outLink startPersonManagement.ivp #txt
+ss0 f7 type ch.axonivy.fintec.hellorule.Data #txt
+ss0 f7 inParamDecl '<> param;' #txt
+ss0 f7 actionDecl 'ch.axonivy.fintec.hellorule.Data out;
+' #txt
+ss0 f7 guid 1658B0B03142E1DB #txt
+ss0 f7 requestEnabled true #txt
+ss0 f7 triggerEnabled false #txt
+ss0 f7 callSignature startPersonManagement() #txt
+ss0 f7 persist false #txt
+ss0 f7 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+ss0 f7 caseData businessCase.attach=true #txt
+ss0 f7 showInStartList 1 #txt
+ss0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>startPersonManagement.ivp</name>
+        <nameStyle>25,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ss0 f7 @C|.responsibility Everybody #txt
+ss0 f7 81 177 30 30 -77 17 #rect
+ss0 f7 @|StartRequestIcon #fIcon
+ss0 f8 type ch.axonivy.fintec.hellorule.Data #txt
+ss0 f8 337 177 30 30 0 15 #rect
+ss0 f8 @|EndIcon #fIcon
+ss0 f10 targetWindow NEW #txt
+ss0 f10 targetDisplay TOP #txt
+ss0 f10 richDialogId ch.axonivy.fintec.hellorule.PersonManagement #txt
+ss0 f10 startMethod start() #txt
+ss0 f10 type ch.axonivy.fintec.hellorule.Data #txt
+ss0 f10 requestActionDecl '<> param;' #txt
+ss0 f10 responseActionDecl 'ch.axonivy.fintec.hellorule.Data out;
+' #txt
+ss0 f10 responseMappingAction 'out=in;
+' #txt
+ss0 f10 isAsynch false #txt
+ss0 f10 isInnerRd false #txt
+ss0 f10 userContext '* ' #txt
+ss0 f10 168 170 112 44 0 -8 #rect
+ss0 f10 @|RichDialogIcon #fIcon
+ss0 f11 expr out #txt
+ss0 f11 111 192 168 192 #arcP
+ss0 f9 expr out #txt
+ss0 f9 280 192 337 192 #arcP
 >Proto ss0 .type ch.axonivy.fintec.hellorule.Data #txt
 >Proto ss0 .processKind NORMAL #txt
 >Proto ss0 0 0 32 24 18 0 #rect
@@ -105,3 +162,7 @@ ss0 f0 mainOut f6 tail #connect
 ss0 f6 head f5 mainIn #connect
 ss0 f5 mainOut f4 tail #connect
 ss0 f4 head f3 mainIn #connect
+ss0 f7 mainOut f11 tail #connect
+ss0 f11 head f10 mainIn #connect
+ss0 f10 mainOut f9 tail #connect
+ss0 f9 head f8 mainIn #connect

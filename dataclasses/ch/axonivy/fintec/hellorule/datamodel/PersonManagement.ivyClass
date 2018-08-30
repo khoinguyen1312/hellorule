@@ -1,0 +1,6 @@
+PersonManagement #class
+ch.axonivy.fintec.hellorule.datamodel #namespace
+debtor ch.axonivy.fintec.hellorule.datamodel.PersonInfo #field
+debtor PERSISTENT #fieldModifier
+partner ch.axonivy.fintec.hellorule.datamodel.PersonInfo #field
+partner PERSISTENT #fieldModifier

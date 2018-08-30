@@ -1,0 +1,10 @@
+Person #class
+ch.axonivy.fintec.hellorule.datamodel #namespace
+id String #field
+id PERSISTENT #fieldModifier
+firstName String #field
+firstName PERSISTENT #fieldModifier
+lastName String #field
+lastName PERSISTENT #fieldModifier
+age String #field
+age PERSISTENT #fieldModifier

@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"      
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:gui="http://axonivy.com/gui/components">
+      
+  <cc:interface componentType="IvyComponent">
+  	<cc:attribute name="dataModel"/>
+  </cc:interface>
+  
+  <cc:implementation>
+	<h:panelGroup layout="block" id="personInfoWrapper">
+	
+		<gui:eventListeners dataModel="#{data.personInfo}" dialogData="#{data}" />
+		
+		<p:panelGrid columns="2" cellpadding="10">
+			<p:outputLabel value="Country: " />
+			<p:selectOneMenu id="country" value="#{data.personInfo.country}">
+				<f:selectItem itemValue="" itemLabel="---Please choose---" />
+				<f:selectItems noSelectionValue="null"
+					value="#{['Vietnam', 'Switzerland', 'Germany']}" />
+			</p:selectOneMenu>						
+
+			<p:outputLabel for="investCrossBorder" value="Invest Crossborder: " />
+			<p:selectBooleanCheckbox id="investCrossBorder" value="#{data.personInfo.invest}" />
+		</p:panelGrid>
+	</h:panelGroup>
+
+  </cc:implementation>
+</html> 

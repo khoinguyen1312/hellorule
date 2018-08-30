@@ -1,0 +1,10 @@
+import ch.axonivy.fintech.standard.guiframework.BaseMetaDto;
+import ch.ivyteam.ivy.environment.Ivy;
+import java.util.Date;
+
+rule "[hellorule:PersonInfo] invest is disable"
+when
+	$invest: BaseMetaDto(propertyName == "TypeBasedRules.PersonInfo.invest")
+then
+	$invest.setReadonly(true);
+end	

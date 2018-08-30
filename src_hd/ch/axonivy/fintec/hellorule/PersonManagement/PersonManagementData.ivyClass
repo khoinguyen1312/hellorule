@@ -1,0 +1,4 @@
+PersonManagementData #class
+ch.axonivy.fintec.hellorule.PersonManagement #namespace
+personManagement ch.axonivy.fintec.hellorule.datamodel.PersonManagement #field
+personManagement PERSISTENT #fieldModifier

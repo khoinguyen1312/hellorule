@@ -1,0 +1,6 @@
+PersonInfo #class
+ch.axonivy.fintec.hellorule.datamodel #namespace
+country String #field
+country PERSISTENT #fieldModifier
+invest Boolean #field
+invest PERSISTENT #fieldModifier

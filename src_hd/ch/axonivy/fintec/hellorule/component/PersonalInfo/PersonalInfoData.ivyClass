@@ -1,0 +1,4 @@
+PersonalInfoData #class
+ch.axonivy.fintec.hellorule.component.PersonalInfo #namespace
+personInfo ch.axonivy.fintec.hellorule.datamodel.PersonInfo #field
+personInfo PERSISTENT #fieldModifier

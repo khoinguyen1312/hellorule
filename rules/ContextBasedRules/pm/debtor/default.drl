@@ -1,0 +1,11 @@
+import ch.axonivy.fintech.standard.guiframework.BaseMetaDto;
+import ch.ivyteam.ivy.environment.Ivy;
+import java.util.Date;
+
+rule "[hellorule:debtor] debtor is allow invest when is Vietnam"
+when
+	$country: BaseMetaDto(propertyName == "ContextBasedRules.pm.debtor.country", viewValue == "Vietnam")
+	$invest: BaseMetaDto(propertyName == "ContextBasedRules.pm.debtor.invest")
+then
+	$invest.setReadonly(false);
+end	

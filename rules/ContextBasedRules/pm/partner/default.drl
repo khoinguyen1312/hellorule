@@ -1,0 +1,11 @@
+import ch.axonivy.fintech.standard.guiframework.BaseMetaDto;
+import ch.ivyteam.ivy.environment.Ivy;
+import java.util.Date;
+
+rule "[hellorule:debtor] partner is allow invest when is not Vietnam"
+when
+	$country: BaseMetaDto(propertyName == "ContextBasedRules.pm.partner.country", viewValue != "Vietnam" && viewValue != null && viewValue != "")
+	$invest: BaseMetaDto(propertyName == "ContextBasedRules.pm.partner.invest")
+then
+	$invest.setReadonly(false);
+end	
